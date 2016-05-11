@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+    <bean id="workflowController" class="cn.sccl.workflow.web.WorkflowController" />  
+    <bean id="taskLocalManager" class="cn.sccl.workflow.service.impl.TaskLocalManagerImpl" >  
+          <property name="dataSource" ref="dataSource" />  
+    </bean>
+    
+    <!-- 流程中可用bean定义，还需要在下面engine中的beans属性中对应增加 -->
+    <bean id="myWorkflowBean" class="cn.sccl.workflow.express.MyWorkflowBean" />  
+    
+    <!-- Activiti begin -->  
+        <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">  
+            <property name="dataSource" ref="dataSource" />  
+            <property name="transactionManager" ref="txManager" />  
+            <property name="databaseSchemaUpdate" value="false" />  
+            <property name="jobExecutorActivate" value="false" />  
+            <property name="history" value="full" />  
+            <property name="dbIdentityUsed" value="false"/> 
+            
+            
+            <property name="beans">
+			    <map>
+			        <entry key="myWorkflowBean" value-ref="myWorkflowBean" />
+			    </map>    
+			</property>
+         <!--     <property name="deploymentResources">  
+                <list>  
+                    <value>classpath*:*.bpmn</value>  
+                </list>  
+            </property>  
+          <property name="transactionsExternallyManaged" value="true" />  
+             <property name="expressionManager">  
+                <bean class="cn.sccl.activiti.util.SpringExpressionManagerFactoryBean">  
+                        <property name="processEngineConfiguration" ref="processEngineConfiguration"></property>  
+                </bean>  
+            </property>  
+            -->
+   
+        </bean>  
+          
+        <bean id="processEngine" factory-bean="processEngineConfiguration" factory-method="buildProcessEngine">  
+        </bean>  
+      
+        <bean id="repositoryService" factory-bean="processEngineConfiguration" factory-method="getRepositoryService" />  
+        <bean id="runtimeService" factory-bean="processEngineConfiguration" factory-method="getRuntimeService" />  
+        <bean id="formService" factory-bean="processEngineConfiguration" factory-method="getFormService" />  
+        <bean id="identityService" factory-bean="processEngineConfiguration" factory-method="getIdentityService" />  
+        <bean id="taskService" factory-bean="processEngineConfiguration" factory-method="getTaskService" />  
+        <bean id="historyService" factory-bean="processEngineConfiguration" factory-method="getHistoryService" />  
+        <bean id="managementService" factory-bean="processEngineConfiguration" factory-method="getManagementService" />  
+ 
+	  <!-- Activiti end -->      
+</beans>

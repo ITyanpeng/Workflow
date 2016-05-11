@@ -1,0 +1,123 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background-image: url(../../images/login_bg.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	font-size: 12px;
+}
+ul{
+	list-style-type: none;	
+}
+#login{
+	background-image: url(../../images/base/login_main_bg.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	width: 710px;
+	height:388px;
+	margin-top:96px;
+	margin-right: auto;
+	margin-left: auto;
+	position:relative;
+}
+#login .account_num{
+	width:208px;
+	height:40px;
+	position:absolute;
+	top:303px;
+	left:43px;
+	background-image: url(../../images/account_num_bg.png);
+	background-repeat: no-repeat;
+	line-height:40px;
+}
+#login .account_num .login_text{
+	width:163px;
+	height:38px;
+	padding-left:45px;
+	background-color:transparent;
+	border:0px;
+	color:#9f9ea3;
+	line-height:38px;
+}
+
+#login .message_text{
+	width:200px;
+	height:58px;
+	position:absolute;
+	top:333px;
+	left:43px;
+ 	background-color:transparent;
+	border:0px;
+	color:#F00;
+	line-height:38px;
+}
+
+#login .password_num{
+	width:208px;
+	height:38px;
+	position:absolute;
+	top:303px;
+	left:265px;
+	background-image: url(../../images/password_num_bg.png);
+	background-repeat: no-repeat;
+	line-height:38px;
+}
+#login .password_num .login_password{
+	width:163px;
+	height:38px;
+	padding-left:45px;
+	background-color:transparent;
+	border:0px;
+	color:#9f9ea3;
+	line-height:38px;
+}
+#login .password_num .login_password_focus{
+	width:163px;
+	height:38px;
+	padding-left:45px;
+	background-color:transparent;
+	border:0px;
+	line-height:38px;
+}
+#login .login_btn_submit{
+	width:89px;
+	height:38px;
+	background-image: url(../../images/login_btn_submit.png);
+	background-repeat: no-repeat;
+	position:absolute;
+	right:138px;
+	top:303px;
+	background-color:transparent;
+	border:0px;
+	cursor:pointer;
+	line-height:38px;
+	padding-left:16px;
+	color:#fff;
+	text-align:left;
+	font-size:13px;
+}
+#login .login_btn_reset{
+	width:89px;
+	height:38px;
+	background-image: url(../../images/login_btn_reset.png);
+	background-repeat: no-repeat;
+	position:absolute;
+	right:38px;
+	top:303px;
+	background-color:transparent;
+	border:0px;
+	cursor:pointer;
+	line-height:38px;
+	padding-left:16px;
+	color:#9f9ea3;
+	text-align:left;
+	font-size:13px;
+}
+
+
+
+
+
+

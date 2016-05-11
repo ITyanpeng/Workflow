@@ -1,0 +1,46 @@
+本工程是基于activiti而构建的。
+
+使用时尽量复制到目标工程中，便于保持在一个事务中。
+
+本工程中的例子大都写在Controller中的，实际使用时请封装到manager中，便于统一控制事务。
+
+流程定义可以在独立项目中进行编辑。
+
+库表说明：
+在原engine sql脚本中，改ACT_RU_EXECUTION(BUSINESS_KEY_)上索引为唯一索引。
+原identity sql脚本彻底改表，通过过视图的形式支持本地用户管理表。
+
+配置说明：
+#############################################
+# workflow configuration
+#############################################
+#主要用于获取配置信息，core-context中的configUtil的bean中引用
+config.filename=config.properties
+#流程定义文件的发布时的临时目录
+workflow.bar.path=E:/bar
+#自定义待办任务查询的语句
+workflow.task.todo.sql=\
+SELECT DISTINCT res.id_ as id ,RES.DUE_DATE_ as due_date, RES.OWNER_ as owner, RES.CREATE_TIME_ as create_time,P.BUSINESS_KEY_ as biz_key, P.NAME_ as biz_name, hi.user_id_ as starter \
+FROM act_ru_task res \ 
+join  act_ru_execution p  on P.PROC_INST_ID_ = RES.PROC_INST_ID_ \
+join act_hi_identitylink hi on hi.PROC_INST_ID_=RES.PROC_INST_ID_ and HI.TYPE_ ='starter' \
+LEFT JOIN act_ru_identitylink i ON i.task_id_ = res.id_ \
+WHERE (   res.assignee_ = ? \
+    OR (    res.assignee_ IS NULL \
+    AND (   i.user_id_ = ? \
+    OR  exists ( \
+        SELECT 1 \
+        FROM act_id_membership g \
+        WHERE g.user_id_ = ? and g.group_id_=i.group_id_) \
+       ) \
+    ) \
+  ) \
+ORDER BY res.create_time_ DESC
+#自定义已办任务查询的语句
+workflow.task.done.sql=\
+SELECT DISTINCT res.id_ as id ,RES.DUE_DATE_ as due_date, RES.OWNER_ as owner, RES.start_time_ as create_time,P.BUSINESS_KEY_ as biz_key, P.NAME_ as biz_name, hi.user_id_ as starter \
+FROM act_hi_taskinst res \
+join  act_hi_procinst p  on P.PROC_INST_ID_ = RES.PROC_INST_ID_ \
+join act_hi_identitylink hi on hi.PROC_INST_ID_=RES.PROC_INST_ID_ and HI.TYPE_ ='starter' \
+WHERE   res.assignee_ = ? \
+ORDER BY res.start_time_ DESC

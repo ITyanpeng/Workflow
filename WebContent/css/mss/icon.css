@@ -1,0 +1,64 @@
+.icon-blank{
+	background:url('../../images/easyui/../../images/easyui/icons/blank.gif') no-repeat center center;
+}
+.icon-add{
+	background:url('../../images/easyui/../../images/easyui/icons/edit_add.png') no-repeat center center;
+}
+.icon-edit{
+	background:url('../../images/easyui/../../images/easyui/icons/pencil.png') no-repeat center center;
+}
+.icon-remove{
+	background:url('../../images/easyui/icons/edit_remove.png') no-repeat center center;
+}
+.icon-save{
+	background:url('../../images/easyui/icons/filesave.png') no-repeat center center;
+}
+.icon-cut{
+	background:url('../../images/easyui/icons/cut.png') no-repeat center center;
+}
+.icon-ok{
+	background:url('../../images/easyui/icons/ok.png') no-repeat center center;
+}
+.icon-no{
+	background:url('../../images/easyui/icons/no.png') no-repeat center center;
+}
+.icon-cancel{
+	background:url('../../images/easyui/icons/cancel.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('../../images/easyui/icons/reload.png') no-repeat center center;
+}
+.icon-search{
+	background:url('../../images/easyui/icons/search.png') no-repeat center center;
+}
+.icon-print{
+	background:url('../../images/easyui/icons/print.png') no-repeat center center;
+}
+.icon-help{
+	background:url('../../images/easyui/icons/help.png') no-repeat center center;
+}
+.icon-undo{
+	background:url('../../images/easyui/icons/undo.png') no-repeat center center;
+}
+.icon-redo{
+	background:url('../../images/easyui/icons/redo.png') no-repeat center center;
+}
+.icon-back{
+	background:url('../../images/easyui/icons/back.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('../../images/easyui/icons/sum.png') no-repeat center center;
+}
+.icon-tip{
+	background:url('../../images/easyui/icons/tip.png') no-repeat center center;
+}
+
+.icon-mini-add{
+	background:url('../../images/easyui/icons/mini_add.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('../../images/easyui/icons/mini_edit.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('../../images/easyui/icons/mini_refresh.png') no-repeat center center;
+}

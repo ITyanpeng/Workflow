@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="base" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	 >
+	<display-name>base</display-name>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/common/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/common/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/common/403.jsp</location>
+	</error-page>
+	<servlet>
+		<servlet-name>sccl</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sccl</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<!-- spring exception处理配置开始 -->
+	<servlet>
+		<servlet-name>exceptionHandler</servlet-name>
+		<servlet-class>cn.sccl.common.exception.ExceptionHandlerServlet</servlet-class>
+		<init-param>
+			<param-name>messageSourceBeanName</param-name>
+			<param-value>messageCode</param-value>
+		</init-param>
+		<init-param>
+			<param-name>defaultErrorPage</param-name>
+			<param-value>/common/error.jsp</param-value>
+		</init-param>		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>exceptionHandler</servlet-name>
+		<url-pattern>/system/exception.jsp</url-pattern>
+	</servlet-mapping>	
+	
+
+	<!-- Character Encoding filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>cn.sccl.common.web.CharactorEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+	
+	<!-- Spring 刷新Introspector防止内存泄露 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+
+	
+	<context-param>
+		<!--
+			Spring ApplicationContext配置文件的路径,可使用通配符,多个路径用,号分隔 此参数用于后面的Spring
+			Context Loader
+		-->
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:main-context.xml</param-value>
+	</context-param>
+	
+	
+	<!-- session超时定义,单位为分钟 -->
+	<session-config>
+		<session-timeout>300</session-timeout>
+	</session-config>
+	
+  
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+	</welcome-file-list>
+
+    <resource-ref>
+        <res-ref-name>NEWBASE</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+</web-app>
