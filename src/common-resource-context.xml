@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 
-
+<!--
 	<bean id="dataSourceTarget" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">
 		<property name="jndiName">
 			<value>${jndi.ds}</value>
@@ -18,8 +18,8 @@
 		<ref bean="dataSourceTarget" />
 	</property>
 	</bean>
+	-->
 	
-	<!--
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}" />
@@ -35,7 +35,7 @@
 		<property name="removeAbandonedTimeout" value="300" />
 		<property name="logAbandoned" value="true" />
 	</bean>
-	-->
+	
 	<!--
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
