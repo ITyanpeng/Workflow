@@ -1,0 +1,10 @@
+package ${pkgPath};
+
+import cn.sccl.common.service.BaseManager;
+import ${modelPath};
+
+
+public interface ${clzName}Manager extends BaseManager<${clzName}>
+{
+}
+

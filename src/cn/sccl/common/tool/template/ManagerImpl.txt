@@ -1,0 +1,16 @@
+package ${pkgPath};
+
+import cn.sccl.common.service.impl.BaseManagerImpl;
+import ${managerPath};
+import ${daoPath};
+import ${modelPath};
+
+public class ${clzName}ManagerImpl extends BaseManagerImpl<${clzName}> implements ${clzName}Manager
+{
+
+	public ${clzName}DAO get${clzName}DAO() 
+	{
+		return (${clzName}DAO)super.baseDAO;
+	}
+}
+

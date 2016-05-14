@@ -1,0 +1,11 @@
+package ${pkgPath};
+
+import cn.sccl.common.dao.impl.BaseDAOImpl;
+import ${daoPath};
+import ${modelPath};
+
+public class ${clzName}DAOImpl extends BaseDAOImpl<${clzName}> implements ${clzName}DAO
+{
+
+}
+

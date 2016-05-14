@@ -1,0 +1,29 @@
+package ${pkgPath};
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import cn.sccl.common.util.DevLog;
+import cn.sccl.common.web.BaseMultiActionController;
+import ${modelPath};
+import ${managerPath};
+
+public class ${clzName}Controller extends BaseMultiActionController 
+{	
+	private ${clzName}Manager ${clzNameLC}Manager;
+
+	public void set${clzName}Manager(${clzName}Manager ${clzNameLC}Manager) 
+	{
+		this.${clzNameLC}Manager = ${clzNameLC}Manager;
+	}
+
+	public ModelAndView list(HttpServletRequest request, HttpServletResponse response) 
+	{
+		return new ModelAndView("list${clzName}s");
+	}
+
+}
+

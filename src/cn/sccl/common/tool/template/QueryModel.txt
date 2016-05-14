@@ -1,0 +1,9 @@
+package ${pkgPath};
+
+import cn.sccl.common.dao.impl.BaseQuery;
+
+public class ${clzName}Query extends BaseQuery 
+{
+	${fieldsDeclareInfo}
+    //TODO
+}

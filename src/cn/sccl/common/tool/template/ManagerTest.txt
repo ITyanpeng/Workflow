@@ -1,0 +1,18 @@
+package ${pkgPath};
+
+
+import cn.sccl.common.BaseTestCase;
+import ${modelPath};
+
+public class ${clzName}ManagerTest extends BaseTestCase 
+{
+	private ${clzName}Manager manager;
+	
+	public void setUp() throws Exception
+	{
+		super.setUp();
+		manager=(${clzName}Manager)ctx.getBean("${clzNameLC}Manager");
+	}
+	
+}
+

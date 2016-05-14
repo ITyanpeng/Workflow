@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="${clzName}">
+	<typeAlias alias="${clzNameLC}" type="${modelPath}" />
+	<typeAlias alias="${clzNameLC}Query" type="${modelQueryPath}" />
+	
+	
+	<resultMap id="result" class="${clzNameLC}">
+		${resultMap}
+	</resultMap>
+	
+ 	<sql id="other-condition">
+${otherCondition}
+ 	</sql>
+
+	<select id="select" resultMap="result">
+		${selectStatement} WHERE delete_flag ='0' 
+		<dynamic prepend=" and ">
+			<isParameterPresent prepend="and">
+				${primaryKey}=#value#
+			</isParameterPresent>			
+		</dynamic>
+	</select>
+	
+	<select id="selectByMap" resultMap="result" >
+		${selectStatement} WHERE delete_flag ='0'  
+		<dynamic prepend=" and ">			
+			<isNotNull property="findBy">
+				<include refid = "other-condition"/>
+			</isNotNull>
+			<isNotNull property="findLikeBy">
+			${findLikeBy}
+			</isNotNull>			
+		</dynamic>
+	</select>
+	
+	<select id="query" resultMap="result" parameterClass="${clzNameLC}Query">
+		<include refid="paginationStart"/>
+			${selectStatement} WHERE delete_flag ='0'  
+			<include refid = "other-condition"/>
+		<isNotNull prepend=" ORDER BY " property="sidx"> $sidx$  $sord$ </isNotNull>
+		<include refid="paginationEnd"/> 
+	</select>
+	
+	<select id="count" resultClass="int" parameterClass="${clzNameLC}Query">
+	     ${countSelectStatement} WHERE delete_flag ='0'  
+			<include refid = "other-condition"/>
+	</select>
+	
+	<insert id="insert" parameterClass="${clzNameLC}">
+		<selectKey resultClass="long" keyProperty="id">
+		 SELECT	SEQ_${tblName}.NEXTVAL AS id FROM dual
+	 	</selectKey>
+	 	${insertStatement}
+	</insert>
+	
+	<insert id="insertWithObjectKey" parameterClass="${clzNameLC}">
+	 	${insertStatement}
+	</insert>
+	
+	<update id="update" parameterClass="${clzNameLC}">
+		${updateStatement}
+	</update>
+	
+	<update id="updateMapModel" parameterClass="java.util.Map">
+		${updateMapModel}
+	</update>
+	
+	<delete id="deleteByPrimaryKey">
+    	DELETE FROM ${tblName} WHERE ${primaryKey} = #value#
+  	</delete>
+  	
+	<delete id="delete">
+    	DELETE FROM ${tblName}
+		<dynamic prepend="WHERE">
+			<include refid = "other-condition"/>
+		</dynamic>
+  	</delete>  	
+  	
+  	<update id="logicDeleteByPrimaryKey">
+    	UPDATE ${tblName} SET delete_flag='1', update_time=systimestamp WHERE ${primaryKey} = #value#
+  	</update> 
+  	
+  	<update id="logicDelete">
+    	UPDATE ${tblName} SET delete_flag='1', update_time=systimestamp 
+		<dynamic prepend="WHERE">
+			<include refid = "other-condition"/>
+		</dynamic>
+  	</update> 
+</sqlMap>
+

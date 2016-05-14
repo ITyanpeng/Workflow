@@ -1,0 +1,10 @@
+package ${pkgPath};
+
+import cn.sccl.common.model.BaseModel;
+
+public class ${clzName} extends BaseModel 
+{
+${fieldsDeclareInfo}
+    //TODO
+}
+
